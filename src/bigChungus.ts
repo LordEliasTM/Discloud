@@ -3,6 +3,10 @@ export interface BigChunkus extends Buffer {
   addChunk(chunk: Buffer): Buffer | null
 }
 
+/**
+ * Spawns the all mighty big chunkus, which hacks the Buffer class
+ * to make it able to write to the buffer in chunks
+ */
 export const spawnBigChunkus = () => {
   Buffer.prototype.currentLen = 0;
   Buffer.prototype.addChunk = function (this: BigChunkus, chunk: Buffer) {
