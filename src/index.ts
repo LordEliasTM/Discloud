@@ -1,5 +1,5 @@
-import { initApi } from "./api.js";
-import { initBot } from "./bot.js";
+import { initApi } from "./api";
+import { initBot } from "./bot";
 import "dotenv/config.js";
 
 (async () => {
