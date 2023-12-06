@@ -1,7 +1,6 @@
 import { Client, Events, GatewayIntentBits } from "discord.js";
 
-/** @type {() => Promise<boolean>} */
-export const initBot = () => new Promise(resolve => {
+export const initBot = () => new Promise<boolean>(resolve => {
 
   const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
