@@ -11,6 +11,6 @@ export type CloudFile = {
 
 export type CloudFileChunk = {
   id: number;
-  size: number;
+  length: number;
   messageId: string;
 }

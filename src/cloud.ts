@@ -11,15 +11,15 @@ export const registerCloudFile = (name: string, size: number) => {
     name,
     size,
     chunks: [],
-  }
+  };
 
   // registerCloudFileChunk
-  return (id: number, size: number, messageId: string) => {
+  return (id: number, length: number, messageId: string) => {
     const cloudFileChunk: CloudFileChunk = {
       id,
-      size,
+      length,
       messageId,
-    }
+    };
 
     cloudFile.chunks.push(cloudFileChunk);
 
@@ -36,13 +36,10 @@ export const registerCloudFile = (name: string, size: number) => {
         const newIndexStr = JSON.stringify(index, null, 2);
         fs.writeFile("./cloud/index.json", newIndexStr);
       }
-      catch(e) {
-        throw e
-      }
       finally {
         release();
       }
-      
-    }
-  }
-}
+
+    };
+  };
+};

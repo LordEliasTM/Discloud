@@ -14,7 +14,7 @@ export const initBot = () => new Promise<boolean>(resolve => {
     _client = readyClient;
     resolve(true);
 
-    //coolCloudThings(readyClient);
+    // coolCloudThings(readyClient);
   });
 
   client.login(process.env.BOT_TOKEN);
@@ -29,12 +29,12 @@ const uploadSegmentToCloud = async (buff: Buffer, filename: string, segId: numbe
 
   const message = await cloudChannel.send({
     files: [buff],
-  })
-  
+  });
+
   console.log("done     ", name);
 
   return registerCloudFileChunk(segId, buff.length, message.id);
-}
+};
 
 export const uploadFile = (stream: Stream.Readable, filename: string, size: number) => {
   const chunk25 = Buffer.alloc(26214400) as BigChunkus;
@@ -56,20 +56,20 @@ export const uploadFile = (stream: Stream.Readable, filename: string, size: numb
 
       stream.resume();
     }
-  })
+  });
 
   stream.on("end", async () => {
     if (chunk25.currentLen > 0) {
-      const lastSeg = chunk25.subarray(0, chunk25.currentLen)
+      const lastSeg = chunk25.subarray(0, chunk25.currentLen);
 
       registerFinish = await uploadSegmentToCloud(lastSeg, filename, chunkCount25++, registerCloudFileChunk);
-      
+
       chunk25.fill(0);
       chunk25.currentLen = 0;
     }
     console.log("EOF");
     registerFinish();
-  })
+  });
 
   return stream;
-}
+};

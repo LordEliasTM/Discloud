@@ -9,9 +9,9 @@ export interface BigChunkus extends Buffer {
  */
 export const spawnBigChunkus = () => {
   Buffer.prototype.currentLen = 0;
-  Buffer.prototype.addChunk = function (this: BigChunkus, chunk: Buffer) {
+  Buffer.prototype.addChunk = function(this: BigChunkus, chunk: Buffer) {
     const remainingLen = this.length - this.currentLen;
-    
+
     // if full
     if (remainingLen == 0) return chunk;
 
@@ -27,5 +27,5 @@ export const spawnBigChunkus = () => {
       // return the remainder as Buffer
       return chunk.subarray(remainingLen, chunk.length);
     }
-  }
-}
+  };
+};
